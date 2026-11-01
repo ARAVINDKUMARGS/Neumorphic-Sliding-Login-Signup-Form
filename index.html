@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>MetaSkillGroup | Neumorphic Sliding Login &amp; Signup</title>
+
+  <!-- Google Fonts: Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- FontAwesome Icons for inputs, toggles, and social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Custom Neumorphic Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background decorative soft neumorphic orbs -->
+  <div class="bg-orb bg-orb-top"></div>
+  <div class="bg-orb bg-orb-bottom"></div>
+
+  <!-- Main Container -->
+  <main class="container" id="container">
+
+    <!-- Mobile Switch Tabs (Visible on mobile/tablet viewports) -->
+    <div class="mobile-switch-nav" aria-label="Form Switcher">
+      <button class="mobile-tab-btn active" id="mobileSignInTab">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+      </button>
+      <button class="mobile-tab-btn" id="mobileSignUpTab">
+        <i class="fa-solid fa-user-plus"></i> Sign Up
+      </button>
+    </div>
+
+    <!-- ==============================================
+         1. SIGN-UP FORM CONTAINER
+         ============================================== -->
+    <div class="form-container sign-up-container">
+      <form id="signUpForm" novalidate autocomplete="off">
+        
+        <!-- MetaSkillGroup Inline SVG Logo -->
+        <div class="logo-wrapper">
+          <svg class="msg-logo" viewBox="0 0 240 50" width="180" height="38" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MetaSkillGroup Logo">
+            <defs>
+              <linearGradient id="msgPurpleGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6C5CE7" />
+                <stop offset="100%" stop-color="#9C88FF" />
+              </linearGradient>
+            </defs>
+            <!-- Emblem: Rounded Squircle with modern skill node -->
+            <g transform="translate(6, 4)">
+              <rect x="0" y="3" width="34" height="34" rx="10" fill="url(#msgPurpleGrad1)" />
+              <path d="M10 26 L17 13 L24 26 L17 21 Z" fill="#ffffff" />
+              <circle cx="17" cy="27" r="2.5" fill="#ffffff" />
+            </g>
+            <!-- Typography -->
+            <text x="50" y="27" font-family="'Nunito', sans-serif" font-size="20" font-weight="900" fill="#2d3436">
+              Meta<tspan fill="#6C5CE7">Skill</tspan><tspan font-weight="700" fill="#636e72">Group</tspan>
+            </text>
+            <text x="50" y="40" font-family="'Nunito', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2.2" fill="#8892b0">
+              LEARN &bull; GROW &bull; EXCEL
+            </text>
+          </svg>
+        </div>
+
+        <h1 class="form-title">Create Account</h1>
+        <p class="form-subtitle">Join MetaSkillGroup to elevate your career</p>
+
+        <!-- Social Signup Options -->
+        <div class="social-container">
+          <button type="button" class="social-btn" aria-label="Sign up with Google" title="Google">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <button type="button" class="social-btn" aria-label="Sign up with GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>or register with your email</span>
+        </div>
+
+        <!-- Feedback Alert Message Box -->
+        <div class="feedback-alert" id="signupFeedback" role="alert" aria-live="polite"></div>
+
+        <!-- Full Name Input -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-user"></i></span>
+          <input type="text" id="signupName" placeholder="Full Name" />
+          <small class="error-msg" id="signupNameError"></small>
+        </div>
+
+        <!-- Email Input -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" id="signupEmail" placeholder="Email Address" />
+          <small class="error-msg" id="signupEmailError"></small>
+        </div>
+
+        <!-- Phone Number Input -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-phone"></i></span>
+          <input type="tel" id="signupPhone" placeholder="Phone Number (e.g. +1 555-0199)" />
+          <small class="error-msg" id="signupPhoneError"></small>
+        </div>
+
+        <!-- Password Input with Eye Toggle -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" id="signupPassword" placeholder="Create Password" />
+          <button type="button" class="toggle-password" data-target="signupPassword" aria-label="Toggle password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+          <small class="error-msg" id="signupPasswordError"></small>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="strength-meter-box">
+          <div class="strength-bar-track">
+            <div class="strength-bar-fill" id="strengthBarFill"></div>
+          </div>
+          <div class="strength-meta">
+            <span class="strength-hint">Strength:</span>
+            <span class="strength-text" id="strengthLabel">Enter password</span>
+          </div>
+        </div>
+
+        <!-- Confirm Password Input with Eye Toggle -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" />
+          <button type="button" class="toggle-password" data-target="signupConfirmPassword" aria-label="Toggle confirm password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+          <small class="error-msg" id="signupConfirmPasswordError"></small>
+        </div>
+
+        <!-- Terms & Privacy Policy Checkbox -->
+        <div class="checkbox-row terms-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="signupTerms" />
+            <span class="checkbox-box">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            <span class="checkbox-label">
+              I agree to the <a href="#terms" class="text-link">Terms</a> &amp; <a href="#privacy" class="text-link">Privacy Policy</a>
+            </span>
+          </label>
+          <small class="error-msg" id="signupTermsError"></small>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="signupSubmitBtn">
+          <span class="btn-text">Sign Up</span>
+          <i class="fa-solid fa-spinner fa-spin btn-spinner"></i>
+        </button>
+
+      </form>
+    </div>
+
+    <!-- ==============================================
+         2. SIGN-IN FORM CONTAINER
+         ============================================== -->
+    <div class="form-container sign-in-container">
+      <form id="signInForm" novalidate autocomplete="off">
+
+        <!-- MetaSkillGroup Inline SVG Logo -->
+        <div class="logo-wrapper">
+          <svg class="msg-logo" viewBox="0 0 240 50" width="180" height="38" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MetaSkillGroup Logo">
+            <defs>
+              <linearGradient id="msgPurpleGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6C5CE7" />
+                <stop offset="100%" stop-color="#9C88FF" />
+              </linearGradient>
+            </defs>
+            <!-- Emblem: Rounded Squircle with modern skill node -->
+            <g transform="translate(6, 4)">
+              <rect x="0" y="3" width="34" height="34" rx="10" fill="url(#msgPurpleGrad2)" />
+              <path d="M10 26 L17 13 L24 26 L17 21 Z" fill="#ffffff" />
+              <circle cx="17" cy="27" r="2.5" fill="#ffffff" />
+            </g>
+            <!-- Typography -->
+            <text x="50" y="27" font-family="'Nunito', sans-serif" font-size="20" font-weight="900" fill="#2d3436">
+              Meta<tspan fill="#6C5CE7">Skill</tspan><tspan font-weight="700" fill="#636e72">Group</tspan>
+            </text>
+            <text x="50" y="40" font-family="'Nunito', sans-serif" font-size="8.5" font-weight="700" letter-spacing="2.2" fill="#8892b0">
+              LEARN &bull; GROW &bull; EXCEL
+            </text>
+          </svg>
+        </div>
+
+        <h1 class="form-title">Welcome Back</h1>
+        <p class="form-subtitle">Enter your credentials to access your dashboard</p>
+
+        <!-- Social Sign-in Options -->
+        <div class="social-container">
+          <button type="button" class="social-btn" aria-label="Sign in with Google" title="Google">
+            <i class="fa-brands fa-google"></i>
+          </button>
+          <button type="button" class="social-btn" aria-label="Sign in with GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>or sign in with email</span>
+        </div>
+
+        <!-- Feedback Alert Message Box -->
+        <div class="feedback-alert" id="loginFeedback" role="alert" aria-live="polite"></div>
+
+        <!-- Email Input -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+          <input type="email" id="loginEmail" placeholder="Email Address" />
+          <small class="error-msg" id="loginEmailError"></small>
+        </div>
+
+        <!-- Password Input with Eye Toggle -->
+        <div class="input-group">
+          <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" id="loginPassword" placeholder="Password" />
+          <button type="button" class="toggle-password" data-target="loginPassword" aria-label="Toggle password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+          <small class="error-msg" id="loginPasswordError"></small>
+        </div>
+
+        <!-- Remember Me & Forgot Password Row -->
+        <div class="form-options-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="rememberMe" />
+            <span class="checkbox-box">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            <span class="checkbox-label">Remember me</span>
+          </label>
+          <a href="#forgot" class="text-link forgot-pass" id="forgotPassLink">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="loginSubmitBtn">
+          <span class="btn-text">Sign In</span>
+          <i class="fa-solid fa-spinner fa-spin btn-spinner"></i>
+        </button>
+
+      </form>
+    </div>
+
+    <!-- ==============================================
+         3. SLIDING OVERLAY CONTAINER
+         ============================================== -->
+    <div class="overlay-container">
+      <div class="overlay">
+
+        <!-- Left Overlay (Shown when SignUp form is active, invites back to SignIn) -->
+        <div class="overlay-panel overlay-left">
+          <div class="overlay-content">
+            <div class="overlay-icon-badge">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h2>Welcome Back!</h2>
+            <p>Already have an account? Sign in with your personal credentials to continue your learning path.</p>
+            <button class="ghost-btn" id="signInToggle">
+              <i class="fa-solid fa-arrow-left"></i> Sign In
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Overlay (Shown when SignIn form is active, invites to SignUp) -->
+        <div class="overlay-panel overlay-right">
+          <div class="overlay-content">
+            <div class="overlay-icon-badge">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h2>Hello, Friend!</h2>
+            <p>Start your journey with MetaSkillGroup today and master industry-demanded tech skills.</p>
+            <button class="ghost-btn" id="signUpToggle">
+              Sign Up <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
+
