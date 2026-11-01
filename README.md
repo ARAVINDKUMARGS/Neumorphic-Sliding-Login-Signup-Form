@@ -1,7 +1,4 @@
 ﻿# Neumorphic-Sliding-Login-Signup-Form
-# Neumorphic-Sliding-Login-Signup-Form
-
-# Neumorphic Sliding Login & Signup Form
 
 A modern and responsive Login & Signup Form built using HTML, CSS, and JavaScript with a clean Neumorphic UI design and smooth sliding animations.
 
